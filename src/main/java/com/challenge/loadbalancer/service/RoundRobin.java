@@ -25,10 +25,10 @@ public class RoundRobin implements LoadBalancingAlgorithm{
     }
 
     @Override
-    public Optional<String> getNextServer() {
+    synchronized public Optional<String> getNextServer() {
 
         int idx = 0;
-        String serverUrl = "";
+        String serverUrl;
 
         while(idx < serverUrlQueue.size() && !serverUrlQueue.isEmpty()){
 
