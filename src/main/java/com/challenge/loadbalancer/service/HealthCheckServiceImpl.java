@@ -45,12 +45,13 @@ public class HealthCheckServiceImpl implements HealthCheckService{
 
         this.serverUrlList.forEach(serverUrl->{
 
-            var boolVal = false;
+            Boolean boolVal;
 
             try{
                 boolVal = restTemplate.getForEntity(serverUrl+"/health", String.class).getStatusCode().is2xxSuccessful();
                 logger.info("{} passed HealthTest", serverUrl);
             }catch (Exception exception){
+                boolVal = false;
                 logger.info("{} didn't pass HealthTest", serverUrl);
             }
 
